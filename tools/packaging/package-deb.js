@@ -14,11 +14,17 @@ async function main() {
     executableName += `-${common.getChannelName()}`;
   }
 
-  console.log(`Creating package for ${appDirName} (this may take a while)`);
+  /* Default to amd64/x64 */
+  if (ARCH_OUTNAME === undefined || ARCH_ELECTRON === undefined) {
+    ARCH_OUTNAME = "x64";
+    ARCH_ELECTRON = "amd64"
+  }
+
+  console.log(`Creating package for ${appDirName} on arch ${ARCH_OUTNAME} (this may take a while)`);
 
   const options = {
     desktopTemplate: "app/assets/desktop.ejs",
-    src: `app/build/dist-electron/packaged/${appDirName}-linux-x64/`,
+    src: `app/build/dist-electron/packaged/${appDirName}-linux-${ARCH_ELECTRON}/`,
     dest: "app/build/dist-electron/installers",
     name: appDirName,
     bin: executableName,
@@ -27,7 +33,7 @@ async function main() {
     genericName: "Threema Desktop Client",
     maintainer: "Threema GmbH <help@threema.ch>",
     icon: configs["linux-deb"][myArgs[0]]["icons"],
-    arch: "amd64",
+    arch: "${ARCH_OUTNAME}",
     homepage: "https://threema.ch",
     categories: ["Social Media"],
     description: "Desktop client for Threema (requires the mobile app)",
@@ -44,6 +50,7 @@ async function main() {
     console.error(err, err.stack);
     process.exit(1);
   }
+
 }
 
 main();

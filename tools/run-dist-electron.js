@@ -10,6 +10,8 @@ const common = require("./packaging/common");
 const makeUniversalApp = require("@electron/universal");
 
 const DEV_ENV = process.env.DEV_ENV;
+const ARCH_OUTNAME = process.env.ARCH_OUTNAME;
+const ARCH_ELECTRON = process.env.ARCH_ELECTRON;
 
 let packageName = "";
 
