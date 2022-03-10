@@ -35,7 +35,7 @@ async function main() {
     icon: configs["linux-deb"][myArgs[0]]["icons"],
     arch: "${ARCH_OUTNAME}",
     homepage: "https://threema.ch",
-    categories: ["Social Media"],
+    categories: ["Network", "InstantMessaging", "Chat"],
     description: "Desktop client for Threema (requires the mobile app)",
     productDescription:
       "Threema for desktop is a wrapped version of Threema Web. A multi-device solution will become available at a later date.",
